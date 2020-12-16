@@ -35,8 +35,15 @@ class property extends Model
 
     }
 
+    
+
     public static  function getAllProperties()
      {
         return $getAllProperties = property::get();  
+     }
+
+     public static  function findById($id)
+     {
+        return $getAllProperties = property::find($id);  
      }
 }

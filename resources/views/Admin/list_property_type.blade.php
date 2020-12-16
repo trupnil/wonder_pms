@@ -112,8 +112,8 @@
                                                       <td>{{ $property->property_type_name }}</td>
                                                       <td>{{ $property->property_code }}</td>
                                                       <td class="center menu-action">
-                                                         <a data-original-title="view" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-green vd_green"> <i class="fa fa-eye"></i> </a>
-                                                         <a data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"> <i class="fa fa-pencil"></i> </a>
+                                                        
+                                                        <a data-original-title="edit" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow" onclick="getEditData({{$property->id}})"> <i class="fa fa-pencil"></i> </a>
                                                          <a data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"> <i class="fa fa-times"></i> </a>
                                                       </td>
                                                    </tr>
@@ -134,6 +134,83 @@
                         </div>
                         <!-- .vd_container --> 
                      </div>
+
+                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                <div class="modal-header vd_bg-blue vd_white">
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                                                   <h4 class="modal-title" id="myModalLabel">Property Type</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                   
+                                             </div>
+                                             <!-- /.modal-content --> 
+                                          </div>
+                                          <!-- /.modal-dialog --> 
+                                       </div>
+                                       <!-- /.modal --> 
+
+                                       <script type="text/javascript">
+                                          
+                                          function getEditData(id)
+                                          {
+                                             //alert(id);
+                                             $.ajaxSetup({
+                                           headers: {
+                                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                    }
+                                              });
+                                             var action = "update-property-type/"+id;
+
+                                             $.ajax({
+
+                                                type:"POST",
+                                                url:"get-property-type-view/"+id,
+                                                data:{"_token": "{{ csrf_token() }}",'id':id},
+                                                success:function(response)
+                                                {
+                                                   //alert(response);
+                                                   $('.modal-body').html(`<form class="form-horizontal" method="POST" action="`+action+`">
+                                                      {{csrf_field()}}
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Property Type Name</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="property_type_name" value="`+response.property_type_name+`">
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Property Type LocalName</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="property_type_localname" value="`+response.property_type_localname+`">
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Property Type Code</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name=" property_code" value="`+response.property_code+`">
+                                                         </div>
+                                                      </div>
+                                                      
+                                                   
+                                                </div>
+                                                <div class="modal-footer background-login">
+                                                   <button type="button" class="btn vd_btn vd_bg-grey" data-dismiss="modal">Close</button>
+                                                   <button type="submit" class="btn vd_btn vd_bg-green">Save changes</button>
+                                                </div>
+                                                </form>`);
+
+                                                }
+
+
+                                             });
+
+
+                                          }
+
+
+
+                                       </script>
                     
                 
 

@@ -173,7 +173,9 @@
                                                        <td>{{ $property->property_localname }}</td>
                                                       <td>{{ $property->allPropertiesWithTypes->property_type_name }}</td>
                                                       <td class="center menu-action">
-                                                         <a data-original-title="view" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-green vd_green"> <i class="fa fa-eye"></i> </a>
+                                                         
+                                                         <a data-original-title="view" data-toggle="modal" data-target="#viewModal" data-placement="top" class="btn menu-icon vd_bd-green vd_green" onclick="getData({{$property->id}})" > <i class="fa fa-eye"></i> </a>
+
                                                          <a data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"> <i class="fa fa-pencil"></i> </a>
                                                          <a data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"> <i class="fa fa-times"></i> </a>
                                                       </td>
@@ -195,9 +197,127 @@
                         </div>
                         <!-- .vd_container --> 
                      </div>
-                    
-                
 
-          
+
+
+                                       <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                <div class="modal-header vd_bg-blue vd_white">
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                                                   <h4 class="modal-title" id="myModalLabel">Property Type</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                             </div>
+                                             <!-- /.modal-content --> 
+                                          </div>
+                                          <!-- /.modal-dialog --> 
+                                       </div>
+
+                     <script type="text/javascript">
+                        
+                     function getData(id)
+                     {
+                        
+                         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+                        $.ajax({
+
+                           type:"POST",
+                           url:'get-property-view/'+id,
+                           data:{"_token": "{{ csrf_token() }}",'id':id},
+                           success:function(response)
+                           {
+                              //alert(response.id);
+                              $('.modal-body').html(` <form class="form-horizontal">
+                                                     
+                                                             <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Property Name</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="property_name" value="`+response.property_name+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Property  LocalName</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="property_localname" value="`+response.property_localname+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Property No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="property_no" value="`+response.property_no+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Way No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="way_no" value="`+response.way_no+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Street No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="street_no" value="`+response.street_no+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Landmark</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name=" landmark" value="`+response.landmark+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Area</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="area" value="`+response.area+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">City</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text"
+                                                             name="city"  value="`+response.city+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Country</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="country"  value="`+response.country+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Photos</label>
+                                                         <div class="col-sm-7 controls">
+                                                         <img src="/photos/`+response.photos+`">
+                                                         </div>
+                                                      </div>
+                                                </div>
+                                                <div class="modal-footer background-login">
+                                                   <button type="button" class="btn vd_btn vd_bg-grey" data-dismiss="modal">Close</button>
+                                                </div>
+                                                </form>`);
+                           }
+
+
+                        });
+                     }
+
+
+                     
+
+                     
+
+                     </script>
            
 @stop
