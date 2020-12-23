@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\property;
 class property_type extends Model
 {
     //
@@ -14,4 +14,9 @@ class property_type extends Model
     	'property_code',
     	'user_id',
      ];
+
+     public function propetiesWithType()
+{
+    return $this->hasMany(property::class);
+}
 }

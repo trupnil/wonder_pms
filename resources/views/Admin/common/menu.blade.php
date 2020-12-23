@@ -43,22 +43,22 @@
                                              </a>
                                           </li>
                                           <li>
-                                             <a href="list_tenant.html">
+                                             <a href="{{route('list-tenant')}}">
                                              <span class="menu-text">Tenant</span>                                      
                                              </a>
                                           </li>
                                           <li>
-                                             <a href="list_account.html">
+                                             <a href="#">
                                              <span class="menu-text">Account</span>                                      
                                              </a>
                                           </li>
                                           <li>
-                                             <a href="list_agreement.html">
+                                             <a href="{{route('list-agreement')}}">
                                              <span class="menu-text">Agreement</span>                                      
                                              </a>
                                           </li>
                                           <li>
-                                             <a href="list_tax.html">
+                                             <a href="{{route('list-texes')}}">
                                              <span class="menu-text">Tax</span>                                      
                                              </a>
                                           </li>

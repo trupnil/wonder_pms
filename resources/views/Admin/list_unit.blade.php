@@ -182,9 +182,14 @@
                                                          <td> {{ $index->block_no }} </td>
                                                           <td> {{ $index->floor_no }} </td>
                                                       <td class="center menu-action">
-                                                         <a data-original-title="view" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-green vd_green"> <i class="fa fa-eye"></i> </a>
-                                                         <a data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"> <i class="fa fa-pencil"></i> </a>
-                                                         <a data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"> <i class="fa fa-times"></i> </a>
+                                                           <a data-original-title="view"  data-toggle="modal" data-target="#viewModal" data-placement="top" class="btn menu-icon vd_bd-green vd_green" onclick="getData({{$index->id}})" > <i class="fa fa-eye"></i> </a>
+                                                         <a data-original-title="edit"  data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow" onclick="editData({{$index->id}})"> <i class="fa fa-pencil"></i> </a>
+                                                         <form method="POST" action="{{ route('unit-delete',$index->id) }}">
+                                                          @csrf @method('DELETE')
+                                                          
+                                                          <button type="submit" data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red" onclick="return confirm('Are you sure you want to delete this item?')";><i class="fa fa-times"></i>
+                                                         </button>
+                                                         </form>
                                                       </td>
                                                    </tr>
                                                   @endforeach
@@ -204,9 +209,284 @@
                         </div>
                         <!-- .vd_container --> 
                      </div>
-                    
-                
+                     <!-- Modal -->
+                                       <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                <div class="modal-header vd_bg-blue vd_white">
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                                                   <h4 class="modal-title" id="myModalLabel">Add Unit</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                  
+                                             </div>
+                                             <!-- /.modal-content --> 
+                                          </div>
+                                          <!-- /.modal-dialog --> 
+                                       </div>
+                                     </div>
+                                       <!-- /.modal --> 
 
+                                         <!-- Modal -->
+                                       <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                <div class="modal-header vd_bg-blue vd_white">
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                                                   <h4 class="modal-title" id="myModalLabel">Edit Unit</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                  
+                                             </div>
+                                             <!-- /.modal-content --> 
+                                          </div>
+                                          <!-- /.modal-dialog --> 
+                                       </div>
+                                     </div>
+                                       <!-- /.modal --> 
+                
+   <script type="text/javascript">
+                        
+                   function getData(id) {
+//alert(id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+
+        type: "POST",
+        url: 'get-unit-view/' + id,
+        data: {
+            "_token": "{{ csrf_token() }}",
+            'id': id
+        },
+        success: function (response) {
+            //alert(response.id);
+            console.log(response);
+            $('.modal-body').html(` <form class="form-horizontal" method="POST" action="{{ route('unit-store') }}" enctype="multipart/form-data">
+                                                      {{csrf_field()}}
+                                                     
+                                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Unit types</label>
+                        <div class="col-sm-7 controls">
+                          <select name="unit_type_id">
+                            @foreach($getAllUnitTypes as $index)
+                            <option value="{{ $index->id }}">{{ $index->unit_type_name }}</option>
+                          @endforeach
+                          
+                          </select>
+                        </div>
+                      </div>
+                     
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Select Property</label>
+                        <div class="col-sm-7 controls">
+                          <select name="property_id">
+                            @foreach($getAllProperties as $index)
+                            <option value="{{ $index->id }}">{{ $index->property_name }}</option>
+                          @endforeach
+                          </select>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="col-sm-4 control-label">Property Types</label>
+                        <div class="col-sm-7 controls">
+                          <select name="property_type_id">
+                          @foreach($allPropertytypes as $index)
+                            <option value="{{ $index->id }}">{{ $index->property_type_name }}</option>
+                          @endforeach
+                         </select>
+                        </div>
+                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Unit Name</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="unit_name"  readonly value="`+response[0].unit_name+`">
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Unit LocalName</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="unit_localname" value="`+response[0].unit_localname+`" readonly>
+                                                         </div>
+                                                      </div>
+                                                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Description</label>
+                        <div class="col-sm-7 controls">
+                          <textarea rows="3" class="width-90" name="description" readonly >`+response[0].description+`</textarea>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Remark</label>
+                        <div class="col-sm-7 controls">
+                          <textarea rows="3" class="width-90" name="remark" readonly>`+response[0].remark+`</textarea>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Current Photo</label>
+                                                         <div class="col-sm-7 controls">
+                                                         <img src="/unit_photos/`+response[0].photos+`">
+                                                         </div>
+                                                      </div>
+                   
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Blook No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="block_no" readonly value="`+response[0].block_no+`">
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Unit Floor No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="floor_no" readonly value="`+response[0].floor_no+`">
+                                                         </div>
+                                                      </div>
+                                                     
+                                                   
+                                                </div>
+                                                <div class="modal-footer background-login">
+                                                   <button type="button" class="btn vd_btn vd_bg-grey" data-dismiss="modal">Close</button>
+                                                   <button type="submit" class="btn vd_btn vd_bg-green">Save changes</button>
+                                                </div>
+                                                </form>`);
+        }
+
+
+    });
+}
+
+
+
+ function editData(id) {
+//alert(id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var action = "update-unit/"+id;
+    
+    $.ajax({
+
+        type: "POST",
+        url: 'get-unit-view/' + id,
+        data: {
+            "_token": "{{ csrf_token() }}",
+            'id': id
+        },
+        success: function (response) {
+            //alert(response.id);
+            console.log(response);
+            $('.modal-body').html(` <form class="form-horizontal" method="POST" action="`+action+`" enctype="multipart/form-data">
+                                                      {{csrf_field()}}
+                                                     
+                                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Unit types</label>
+                        <div class="col-sm-7 controls">
+                          <select name="unit_type_id">
+                            @foreach($getAllUnitTypes as $index)
+                            <option value="{{ $index->id }}">{{ $index->unit_type_name }}</option>
+                          @endforeach
+                          
+                          </select>
+                        </div>
+                      </div>
+                     
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Select Property</label>
+                        <div class="col-sm-7 controls">
+                          <select name="property_id">
+                            @foreach($getAllProperties as $index)
+                            <option value="{{ $index->id }}">{{ $index->property_name }}</option>
+                          @endforeach
+                          </select>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="col-sm-4 control-label">Property Types</label>
+                        <div class="col-sm-7 controls">
+                          <select name="property_type_id">
+                          @foreach($allPropertytypes as $index)
+                            <option value="{{ $index->id }}">{{ $index->property_type_name }}</option>
+                          @endforeach
+                         </select>
+                        </div>
+                      </div>
+                                                      <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Unit Name</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="unit_name"   value="`+response[0].unit_name+`">
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Unit LocalName</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" name="unit_localname" value="`+response[0].unit_localname+`" >
+                                                         </div>
+                                                      </div>
+                                                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Description</label>
+                        <div class="col-sm-7 controls">
+                          <textarea rows="3" class="width-90" name="description"  >`+response[0].description+`</textarea>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Remark</label>
+                        <div class="col-sm-7 controls">
+                          <textarea rows="3" class="width-90" name="remark" >`+response[0].remark+`</textarea>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Current Photo</label>
+                                                         <div class="col-sm-7 controls">
+                                                         <img src="/unit_photos/`+response[0].photos+`">
+                                                         </div>
+                                                      </div>
+                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Photos</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="file" 
+                                                            name="photos">
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Blook No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="block_no"  value="`+response[0].block_no+`">
+                                                         </div>
+                                                      </div>
+                                                       <div class="form-group">
+                                                         <label class="col-sm-4 control-label">Unit Floor No</label>
+                                                         <div class="col-sm-7 controls">
+                                                            <input class="input-border-btm" type="text" 
+                                                            name="floor_no"  value="`+response[0].floor_no+`">
+                                                         </div>
+                                                      </div>
+                                                     
+                                                   
+                                                </div>
+                                                <div class="modal-footer background-login">
+                                                   <button type="button" class="btn vd_btn vd_bg-grey" data-dismiss="modal">Close</button>
+                                                   <button type="submit" class="btn vd_btn vd_bg-green">Save changes</button>
+                                                </div>
+                                                </form>`);
+        }
+
+
+    });
+}
+
+                   
+
+             </script>
+           
           
            
 @stop

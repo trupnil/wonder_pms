@@ -27,6 +27,12 @@ class unit extends Model
     	'floor_no',
     ];
 
+
+    public static function getAllUnitWithDecending()
+    {
+        return unit::orderBy('id', 'desc')->get();
+    }
+
     public function hasOneUnitType()
     {
     	return $this->hasOne(unit_type::class, 'id', 'unit_type_id');	
