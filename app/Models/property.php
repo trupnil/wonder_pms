@@ -28,7 +28,7 @@ class property extends Model
      {
  		return $getAllPropertiesType = property_type::get();  
  	 }
-
+     
  	 public function allPropertiesWithTypes(){
 
      return $this->hasOne(property_type::class, 'id', 'property_type_id');

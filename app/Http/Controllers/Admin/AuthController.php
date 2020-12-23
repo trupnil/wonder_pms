@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     	 if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
       
-            	echo "ok";
+            	// echo "ok";
            // Authentication passed...
             return redirect()->route('list-property-type');
          }

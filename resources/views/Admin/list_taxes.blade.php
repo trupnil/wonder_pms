@@ -38,22 +38,23 @@
                                              <div class="modal-content">
                                                 <div class="modal-header vd_bg-blue vd_white">
                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-                                                   <h4 class="modal-title" id="myModalLabel">Unit Type</h4>
+                                                   <h4 class="modal-title" id="myModalLabel">Taxes</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                    <form class="form-horizontal" method="POST" action="{{ route('unit-type-store') }}" enctype="multipart/form-data">
                                                       {{csrf_field()}}
                                                       
                                                       <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Unit Type Name</label>
+                                                         <label class="col-sm-4 control-label">Tax Name</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="unit_type_name">
+                                                            <input class="input-border-btm" type="text" name="tax_name">
                                                          </div>
                                                       </div>
                                                        <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Unit Type  LocalName</label>
+                                                         <label class="col-sm-4 control-label">Tax Percentage</label>
+
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="unit_type_localname">
+                                                            <input class="input-border-btm" type="text" name="tax_percentage">
                                                          </div>
                                                       </div>
                                                      
@@ -101,7 +102,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @php $i=1; @endphp
-                                                   @foreach($getAllUnitTypes as $unitType)
+                                                {{--    @foreach($getAllUnitTypes as $unitType)
                                                    <tr class="odd gradeX">
                                                       <td> {{ $i++ }} </td>
                                                       <td>{{ $unitType->unit_type_name }}</td>
@@ -118,7 +119,7 @@
                                                          </form>
                                                       </td>
                                                    </tr>
-                                                  @endforeach
+                                                  @endforeach --}}
                                                 </tbody>
                                              </table>
                                           </div>

@@ -31,50 +31,8 @@
                                        <h1>Property Type</h1>
                                     </div>
                                     <div class="col-xs-4 ">
-                                       <button class="btn vd_btn vd_bg-green" data-toggle="modal" data-target="#myModal" type="button">New</button>
-                                       <!-- Modal -->
-                                       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog">
-                                             <div class="modal-content">
-                                                <div class="modal-header vd_bg-blue vd_white">
-                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-                                                   <h4 class="modal-title" id="myModalLabel">Property Type</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                   <form class="form-horizontal" method="POST" action="{{ route('property-type-store') }}">
-                                                      {{csrf_field()}}
-                                                      <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Property Type Name</label>
-                                                         <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="property_type_name">
-                                                         </div>
-                                                      </div>
-                                                       <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Property Type LocalName</label>
-                                                         <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="property_type_localname">
-                                                         </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Property Type Code</label>
-                                                         <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name=" property_code">
-                                                         </div>
-                                                      </div>
-                                                      
-                                                   
-                                                </div>
-                                                <div class="modal-footer background-login">
-                                                   <button type="button" class="btn vd_btn vd_bg-grey" data-dismiss="modal">Close</button>
-                                                   <button type="submit" class="btn vd_btn vd_bg-green">Save changes</button>
-                                                </div>
-                                                </form>
-                                             </div>
-                                             <!-- /.modal-content --> 
-                                          </div>
-                                          <!-- /.modal-dialog --> 
-                                       </div>
-                                       <!-- /.modal --> 
+                                       <button class="btn vd_btn vd_bg-green" data-toggle="modal" data-target="#myModal" type="button" >New</button>
+
                                        <div class="btn-group">
                                           <button type="button" class="btn btn-primary">Export</button>
                                           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button>
@@ -87,6 +45,9 @@
                                     </div>
                                  </div>
                               </div>
+
+
+
                               <div class="vd_content-section clearfix">
                                  <div class="row">
                                     <div class="col-md-12">
@@ -114,7 +75,12 @@
                                                       <td class="center menu-action">
                                                         
                                                         <a data-original-title="edit" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow" onclick="getEditData({{$property->id}})"> <i class="fa fa-pencil"></i> </a>
-                                                         <a data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"> <i class="fa fa-times"></i> </a>
+
+                                                        <form method="POST" action="{{ route('property-type-delete',$property->id) }}">
+                                                         @csrf @method('DELETE')
+                                                         <button type="submit" data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red" onclick="return confirm('Are you sure you want to delete this item?')";><i class="fa fa-times"></i>
+                                                         </button>
+</form>
                                                       </td>
                                                    </tr>
                                                   @endforeach
@@ -134,6 +100,50 @@
                         </div>
                         <!-- .vd_container --> 
                      </div>
+
+                                                <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header vd_bg-blue vd_white">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+            <h4 class="modal-title" id="myModalLabel">Property Type</h4>
+         </div>
+         <div class="modal-body">
+            <form class="form-horizontal" method="POST" action="{{ route('property-type-store') }}">
+               {{csrf_field()}}
+               <div class="form-group">
+                  <label class="col-sm-4 control-label">Property Type Name</label>
+                  <div class="col-sm-7 controls">
+                     <input class="input-border-btm" type="text" name="property_type_name">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-4 control-label">Property Type LocalName</label>
+                  <div class="col-sm-7 controls">
+                     <input class="input-border-btm" type="text" name="property_type_localname">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-4 control-label">Property Type Code</label>
+                  <div class="col-sm-7 controls">
+                     <input class="input-border-btm" type="text" name=" property_code">
+                  </div>
+               </div>
+         </div>
+         <div class="modal-footer background-login">
+         <button type="button" class="btn vd_btn vd_bg-grey" data-dismiss="modal">Close</button>
+         <button type="submit" class="btn vd_btn vd_bg-green">Save changes</button>
+           </form> 
+         </div>
+         
+      </div>
+   </div>
+   <!-- /.modal-content --> 
+</div>
+<!-- /.modal-dialog --> 
+</div>
+<!-- /.modal -->
 
                      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
