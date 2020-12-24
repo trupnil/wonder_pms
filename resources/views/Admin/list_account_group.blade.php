@@ -8,8 +8,8 @@
                               <div class="vd_head-section clearfix">
                                  <div class="vd_panel-header">
                                     <ul class="breadcrumb">
-                                       <li><a href="index.html">Home</a> </li>
-                                       <li><a href="listtables-tables-variation.html">List &amp; Tables</a> </li>
+                                       <li><a href="">Home</a> </li>
+                                       <li><a href="">List &amp; Tables</a> </li>
                                        <li class="active">Data Tables</li>
                                     </ul>
                                     <div class="vd_panel-menu hidden-sm hidden-xs" data-intro="<strong>Expand Control</strong><br/>To expand content page horizontally, vertically, or Both. If you just need one button just simply remove the other button code." data-step=5  data-position="left">
@@ -28,7 +28,7 @@
                               <div class="vd_title-section clearfix">
                                  <div class="vd_panel-header col-xs-12">
                                     <div class="col-xs-8 left">
-                                       <h1>Taxes</h1>
+                                       <h1>Account Groups</h1>
                                     </div>
                                     <div class="col-xs-4 ">
                                        <button class="btn vd_btn vd_bg-green" data-toggle="modal" data-target="#myModal" type="button">New</button>
@@ -38,23 +38,23 @@
                                              <div class="modal-content">
                                                 <div class="modal-header vd_bg-blue vd_white">
                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-                                                   <h4 class="modal-title" id="myModalLabel">Taxes</h4>
+                                                   <h4 class="modal-title" id="myModalLabel">Account Group</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                   <form class="form-horizontal" method="POST" action="{{ route('store-taxes') }}" enctype="multipart/form-data">
+                                                   <form class="form-horizontal" method="POST" action="{{ route('store-account-group') }}" enctype="multipart/form-data">
                                                       {{csrf_field()}}
                                                       
                                                       <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Tax Name</label>
+                                                         <label class="col-sm-4 control-label">Account Group Name</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="tax_name">
+                                                            <input class="input-border-btm" type="text" name="account_group_name">
                                                          </div>
                                                       </div>
                                                        <div class="form-group">
-                                                         <label class="col-sm-4 control-label">Tax Percentage</label>
+                                                         <label class="col-sm-4 control-label">Account Group Code</label>
 
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="tax_percentage">
+                                                            <input class="input-border-btm" type="text" name="account_group_code">
                                                          </div>
                                                       </div>
                                                      
@@ -88,29 +88,29 @@
                                     <div class="col-md-12">
                                        <div class="panel widget">
                                           <div class="panel-heading vd_bg-grey">
-                                             <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> List Tax</h3>
+                                             <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> Account Group</h3>
                                           </div>
                                           <div class="panel-body table-responsive">
                                              <table class="table table-striped" id="data-tables">
                                                 <thead>
                                                    <tr>
-                                                      <th> Sr.No </th>
-                                                      <th>Tax Name</th>
-                                                      <th>Tax Percentage</th>
+                                                      <th>Sr.No </th>
+                                                      <th>Account Group Name</th>
+                                                      <th>Account Group Code</th>
                                                       <th>Action</th>
                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php $i=1; @endphp
-                                                   @foreach($getTaxes as $getTax)
+                                                   @foreach($getAllAccountGroups as $getAllAccountGroup)
                                                    <tr class="odd gradeX">
                                                       <td> {{ $i++ }} </td>
-                                                      <td>{{ $getTax->tax_name }}</td>
-                                                       <td>{{ $getTax->tax_percentage }}</td>
+                                                      <td>{{ $getAllAccountGroup->account_group_name }}</td>
+                                                       <td>{{ $getAllAccountGroup->account_group_code }}</td>
                                                       <td class="center menu-action">
                                                          <a data-original-title="view" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-green vd_green"> <i class="fa fa-eye"></i> </a>
-                                                         <a data-original-title="edit" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow" onclick="getEditData({{$getTax->id}})"> <i class="fa fa-pencil"></i> </a>
-                                                         <form action="{{route('tax-delete',$getTax->id)}}" method="POST">  
+                                                         <a data-original-title="edit" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow" onclick="getEditData({{$getAllAccountGroup->id}})"> <i class="fa fa-pencil"></i> </a>
+                                                         <form action="{{route('account-group-delete',$getAllAccountGroup->id)}}" method="POST">  
                                                          {{csrf_field()}}
                                                          @method('DELETE')
 
@@ -119,7 +119,7 @@
                                                          </form>
                                                       </td>
                                                    </tr>
-                                                  @endforeach
+                                                  @endforeach 
                                                 </tbody>
                                              </table>
                                           </div>
@@ -143,7 +143,7 @@
                                              <div class="modal-content">
                                                 <div class="modal-header vd_bg-blue vd_white">
                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-                                                   <h4 class="modal-title" id="myModalLabel">Tax</h4>
+                                                   <h4 class="modal-title" id="myModalLabel">Account Group</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                   
@@ -165,12 +165,12 @@
                                                     }
                                               });
                                              
-                                             var action = "update-tax/"+id;
+                                             var action = "update-account-group/"+id;
                                              
                                               $.ajax({
 
                                                 type:"POST",
-                                                url:"get-tax-ajax/"+id,
+                                                url:"get-account-group-ajax/"+id,
                                                 data:{"_token": "{{ csrf_token() }}",'id':id},
                                                 success:function(response)
                                                 {
@@ -182,13 +182,13 @@
                                                       <div class="form-group">
                                                          <label class="col-sm-4 control-label">Tax Name</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="tax_name" value="`+response.tax_name+`">
+                                                            <input class="input-border-btm" type="text" name="account_group_name" value="`+response.account_group_name+`">
                                                          </div>
                                                       </div>
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Tax Percentage</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" name="tax_percentage" value="`+response.tax_percentage+`">
+                                                            <input class="input-border-btm" type="text" name="account_group_code" value="`+response.account_group_code+`">
                                                          </div>
                                                       </div>
                                                      

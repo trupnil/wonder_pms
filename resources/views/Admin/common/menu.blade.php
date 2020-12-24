@@ -24,32 +24,38 @@
                                        <ul>
                                           <li>
                                              <a href="{{route('list-property-type')}}">
-                                             <span class="menu-text">Property Type</span>  
+                                             <span class="menu-text">Properties Types</span>  
                                              </a>
                                           </li>
                                           <li>
                                              <a href="{{route('list-properties')}}">
-                                             <span class="menu-text">Property</span>                                      
+                                             <span class="menu-text">Properties</span>                                      
                                              </a>
                                           </li>
                                           <li>
                                              <a href="{{route('list-unit-type')}}">
-                                             <span class="menu-text">Unit Type</span>                                      
+                                             <span class="menu-text">Units Type</span>                                      
                                              </a>
                                           </li>
                                           <li>
                                              <a href="{{route('list-unit')}}">
-                                             <span class="menu-text">Unit</span>                                      
+                                             <span class="menu-text">Units</span>                                      
                                              </a>
                                           </li>
                                           <li>
                                              <a href="{{route('list-tenant')}}">
-                                             <span class="menu-text">Tenant</span>                                      
+                                             <span class="menu-text">Tenants</span>                                      
                                              </a>
                                           </li>
                                           <li>
-                                             <a href="#">
-                                             <span class="menu-text">Account</span>                                      
+                                             <a href="{{ route('list-account-group') }}">
+                                             <span class="menu-text">Accounts Group</span>                                      
+                                             </a>
+                                          </li>
+
+                                           <li>
+                                             <a href="{{ route('list-account') }}">
+                                             <span class="menu-text">Accounts</span>                                      
                                              </a>
                                           </li>
                                           <li>
@@ -58,8 +64,8 @@
                                              </a>
                                           </li>
                                           <li>
-                                             <a href="{{route('list-texes')}}">
-                                             <span class="menu-text">Tax</span>                                      
+                                             <a href="{{route('list-taxes')}}">
+                                             <span class="menu-text">Taxes</span>                                      
                                              </a>
                                           </li>
                                        </ul>
