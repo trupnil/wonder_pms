@@ -70,3 +70,15 @@ Route::POST('store-account','Admin\masterController@storeAccount')->name('store-
 Route::POST('get-account-ajax/{id}','Admin\masterController@getAccountById')->name('get-account-ajax');
 Route::POST('update-account/{id}','Admin\masterController@updateAccount')->name('update-account');
 Route::DELETE('account-delete/{id}','Admin\masterController@deleteAccount')->name('account-delete');
+
+
+//Reports Payment
+Route::GET('first_report','Admin\ReportsController@index')->name('first.report');
+Route::POST('get-payment-data','Admin\ReportsController@getPaymentData')->name('get-payment-data');
+Route::POST('payment-store','Admin\ReportsController@storePayment')->name('payment-store');
+
+//Search Report
+Route::POST('get-search-report','Admin\ReportsController@getSearchReport')->name('get-search-report');
+
+Route::any('get-first-search-report','Admin\ReportsController@getFirstReportSearch')->name('first_report_search');
+Route::any('get-payment-overall-report','Admin\ReportsController@getPaymentOverallReportSearch')->name('get.payment.overall.report');
