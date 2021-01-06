@@ -68,6 +68,11 @@
                                              <span class="menu-text">Taxes</span>                                      
                                              </a>
                                           </li>
+                                           <li>
+                                             <a href="{{route('first_report_search')}}">
+                                             <span class="menu-text">Payments</span>                                      
+                                             </a>
+                                          </li>
                                        </ul>
                                     </div>
                                  </li>
@@ -131,6 +136,16 @@
                                     </a>
                                     <div class="child-menu"  data-action="click-target">
                                        <ul>
+                                           <li>
+                                             <a href="{{ route('first_report_search') }}">
+                                             <span class="menu-text">Get Payment Report</span>  
+                                             </a>
+                                          </li>
+                                           <li>
+                                             <a href="{{ route('get.payment.overall.report') }}">
+                                             <span class="menu-text">Get Payment Full Report</span>  
+                                             </a>
+                                          </li>
                                           <li>
                                              <a href="#">
                                              <span class="menu-text">Outstanding Monthwise</span>  
