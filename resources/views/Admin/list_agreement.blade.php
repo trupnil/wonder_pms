@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('main-section')
 
-                  
+
                     <div class="vd_content-wrapper">
                         <div class="vd_container">
                            <div class="vd_content clearfix">
@@ -103,9 +103,9 @@
                                                       </div>
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Resident Card</label>
-                                                         <div class="col-sm-7 controls" 
+                                                         <div class="col-sm-7 controls"
                                                          id="resident_get_image" >
-                                                         
+
                                                       </div>
                                                    </div>
                                                      <div class="form-group">
@@ -113,24 +113,24 @@
                                                          <div class="col-sm-7 controls"  >
                                                           <input type="text" readonly="" name="resident_card" >
                                                       </div>
-                                                      
+
                                                          </div>
 
-                                                    
+
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Passport</label>
                                                          <div class="col-sm-7 controls">
                                                             <input class="input-border-btm" type="text" name="passport">
                                                          </div>
                                                       </div>
-                                                   
+
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Mobile</label>
                                                          <div class="col-sm-7 controls">
                                                             <input class="input-border-btm" type="text" name="mobile">
                                                          </div>
                                                       </div>
-                                                      
+
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Telephone</label>
                                                          <div class="col-sm-7 controls">
@@ -140,14 +140,14 @@
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Tenant Work</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" 
+                                                            <input class="input-border-btm" type="text"
                                                             name="tenant_work">
                                                          </div>
                                                       </div>
                                                        <div class="form-group">
                                                          <label class="col-sm-4 control-label">Tenant CR.</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" 
+                                                            <input class="input-border-btm" type="text"
                                                             name="tenant_cr">
                                                          </div>
                                                       </div>
@@ -155,7 +155,7 @@
                                                       <div class="form-group">
                                                          <label class="col-sm-4 control-label">Sponser Name</label>
                                                          <div class="col-sm-7 controls">
-                                                            <input class="input-border-btm" type="text" 
+                                                            <input class="input-border-btm" type="text"
                                                             name="sponser_name">
                                                          </div>
                                                       </div>
@@ -191,14 +191,14 @@
                                                             <input class="input-border-btm" type="date" name="agreement_end">
                                                          </div>
                                                       </div>
-                                                       
+
                                                         <div class="form-group">
                                                          <label class="col-sm-4 control-label">Document Attach</label>
                                                          <div class="col-sm-7 controls">
                                                             <input class="input-border-btm" type="file" name="document_attach">
                                                          </div>
                                                       </div>
-                                                       
+
                                                         <div class="form-group">
                                                          <label class="col-sm-4 control-label"> Monthly Rent</label>
                                                          <div class="col-sm-7 controls">
@@ -218,12 +218,12 @@
                                                 </div>
                                                 </form>
                                              </div>
-                                             <!-- /.modal-content --> 
+                                             <!-- /.modal-content -->
                                           </div>
-                                          <!-- /.modal-dialog --> 
+                                          <!-- /.modal-dialog -->
                                        </div>
 
-                                       <!-- /.modal --> 
+                                       <!-- /.modal -->
                                        <div class="btn-group">
                                           <button type="button" class="btn btn-primary">Export</button>
                                           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button>
@@ -265,19 +265,19 @@
                                                       <td>{{ $getAllAgreement->hasOneUnitType->unit_type_name }}</td>
                                                        <td>{{ $getAllAgreement->hasOneUnit->unit_name }}</td>
                                                       <td>{{ $getAllAgreement->hasOnePropertType->property_type_name }}</td>
-                                         <td>{{ $getAllAgreement->hasOneProperty->property_name }}</td> 
+                                         <td>{{ $getAllAgreement->hasOneProperty->property_name }}</td>
                                                         <td>{{ $getAllAgreement->hasOneTenant->tenant_name }}</td>
                                                         <td>{{ $getAllAgreement->agreement_no }}</td>
                                                       <td class="center menu-action">
                                                          <a data-original-title="view" data-toggle="modal" data-target="#viewModal" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-green vd_green" onclick="getData({{$getAllAgreement->id}})" > <i class="fa fa-eye"></i> </a>
-                                                         <a data-original-title="edit" data-toggle="modal" data-target="#editModal"data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow" 
+                                                         <a data-original-title="edit" data-toggle="modal" data-target="#editModal"data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"
                                                          onclick="getEditData({{$getAllAgreement->id}})"  > <i class="fa fa-pencil"></i> </a>
                                                          <form method="POST" action="{{ route('delete-agreement',$getAllAgreement->id) }}">
                                                           @csrf @method('DELETE')
 
                                                          <button type="submit" data-original-title="delete" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red" onclick="return confirm('Are you sure you want to delete this item?')";><i class="fa fa-times"></i>
                                                          </button>
-                                                         
+
                                                          </form>
                                                       </td>
                                                    </tr>
@@ -286,17 +286,17 @@
                                              </table>
                                           </div>
                                        </div>
-                                       <!-- Panel Widget --> 
+                                       <!-- Panel Widget -->
                                     </div>
-                                    <!-- col-md-12 --> 
+                                    <!-- col-md-12 -->
                                  </div>
-                                 <!-- row --> 
+                                 <!-- row -->
                               </div>
-                              <!-- .vd_content-section --> 
+                              <!-- .vd_content-section -->
                            </div>
-                           <!-- .vd_content --> 
+                           <!-- .vd_content -->
                         </div>
-                        <!-- .vd_container --> 
+                        <!-- .vd_container -->
                      </div>
 
 
@@ -437,7 +437,7 @@
         <h4 class="modal-title" id="myModalLabel">Agreement Edit</h4>
       </div>
       <div class="modal-body">
-        
+
     </div>
     <!-- /.modal-content -->
   </div>
@@ -450,7 +450,7 @@
 
 
 <script type="text/javascript">
-   
+
    function getUnitTypeForAgreement(unit_id)
    {
       alert(unit_id);
@@ -560,7 +560,7 @@
                $('input[name="payment_type"]').val(response[0].payment_type).attr('readonly', true);
                $('input[name="agreement_start"]').val(response[0].agreement_start).attr('readonly', true);
                $('input[name="agreement_end"]').val(response[0].agreement_end).attr('readonly', true);
-               
+
 
 
 
@@ -581,7 +581,8 @@
 
 function getUnitTypeForAgreementEdit(unit_id)
    {
-      alert('edit check');
+      //alert('edit check');
+      event.preventDefault()
       $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -606,7 +607,39 @@ function getUnitTypeForAgreementEdit(unit_id)
       });
    }
 
-    
+
+   function getUnitTypeForAgreementUpdate(unit_id)
+   {
+      alert('edit check');
+      event.preventDefault()
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+      $.ajax({
+
+         type:"POST",
+         url:"get-unit-type-id/"+unit_id,
+         data:{"_token": "{{ csrf_token() }}",'id': unit_id},
+         success:function(response)
+         {
+            console.log(response[0].unit_type_name);
+            //alert(response[0].unit_type_id);
+             $('#input[name="unit_type_name"]').val(response[0]['has_one_unit_type'].unit_type_name);
+             $('input[name="unit_name"]').val(response[0].unit_name);
+
+
+             $('#unit_type_id_update').html("<option value="+response[0].unit_type_id+"> "+ response[0]['has_one_unit_type'].unit_type_name +"  </option>");
+             $('# property_id_update').html("<option value="+response[0].property_type_id+"> "+ response[0]['has_one_property'].property_name +"  </option>");
+             $('#property_type_id_update').html("<option value="+response[0].property_type_id+"> "+ response[0]['has_one_propert_type'].property_type_name +"  </option>");
+
+         }
+
+      });
+   }
+
+
    function getEditData(id) {
    //alert(id);
     $.ajaxSetup({
@@ -627,34 +660,8 @@ function getUnitTypeForAgreementEdit(unit_id)
             'id': id
         },
         success: function (response) {
-
-             console.log(response);
-           //   $("#unit_id option[value= "+response[0]['has_one_unit'].unit_id+"]").attr("selected","selected");
-
-           // $('#resident_get_image_edit').html('<img src="/tenant/'+response[0]['has_one_tenant'].resident_card+'" />');
-
-           //     $('#document_attach_edit').html('<embed src="/documents/'+response[0].document_attach+'" class="img-responsive"/>');
-           //      $('#editForm input[name="agreement_no"]').val(response[0].agreement_no).attr('readonly', true);
-           //        $('input[name="tenant_name"]').val(response[0]['has_one_tenant'].tenant_name).attr('readonly', true);
-           //         $('input[name="resident_card"]').val(response[0]['has_one_tenant'].resident_card).attr('readonly', true);
-                    
-           //     $('#editForm input[name="passport"]').val(response[0]['has_one_tenant'].passport);
-           //     $('#editForm input[name="mobile"]').val(response[0]['has_one_tenant'].mobile);
-           //     $('#editForm input[name="telephone"]').val(response[0]['has_one_tenant'].telephone);
-           //     $('#editForm input[name="tenant_work"]').val(response[0]['has_one_tenant'].tenant_work);;
-           //     $('#editForm input[name="tenant_cr"]').val(response[0]['has_one_tenant'].tenant_cr);
-           //     $('#editForm input[name="sponser_name"]').val(response[0]['has_one_tenant'].sponser_name);
-           //     $('#editForm input[name="period_of"]').val(response[0].period_of);
-           //     $('#editForm input[name="monthly_rent"]').val(response[0].monthly_rent);
-           //     $('#editForm input[name="payment_type"]').val(response[0].payment_type);
-           //     $('#editForm input[name="agreement_start"]').val(response[0].agreement_start);
-           //     $('#editForm input[name="agreement_end"]').val(response[0].agreement_end);
-           //     $('#editForm input[name="unit_type_name"]').val(response[0].unit_type_name).attr('readonly', true);
-           //       $('#editForm input[name="document_attach"]').val(response[0].document_attach).attr('readonly', true);
-           //     $('#editForm input[name="unit_name"]').val(response[0].unit_name).attr('readonly', true);
-           //     $('#editForm').prop('action', action);
-               
-                $('.modal-body').html(`<form class="form-horizontal" id="editForm" method="POST" enctype="multipart/form-data">{{csrf_field()}}
+           console.log(response);
+           $('.modal-body').html(`<form class="form-horizontal" id="editForm" method="POST" enctype="multipart/form-data">{{csrf_field()}}
           <div class="form-group">
             <label class="col-sm-4 control-label">Agreement No:</label>
             <div class="col-sm-7 controls">
@@ -664,28 +671,28 @@ function getUnitTypeForAgreementEdit(unit_id)
           <div class="form-group">
             <label class="col-sm-4 control-label">Units</label>
             <div class="col-sm-7 controls">
-              <select name="unit_id" id="unit_id" onchange="getUnitTypeForAgreementEdit(this.value)">@foreach($getAllUnits as $index)
+              <select name="unit_id" id="unit_id" onchange="getUnitTypeForAgreementUpdate(this.value)">@foreach($getAllUnits as $index)
                 <option value="{{ $index->id }}">{{ $index->unit_name }}</option>@endforeach</select>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Unit types</label>
             <div class="col-sm-7 controls">
-              <select id="unit_type_id_edit" name="unit_type_id">@foreach($getAllUnitTypes as $index)
+              <select id="unit_type_id_update" name="unit_type_id">@foreach($getAllUnitTypes as $index)
                 <option value="{{ $index->id }}">{{ $index->unit_type_name }}</option>@endforeach</select>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Properties</label>
             <div class="col-sm-7 controls">
-              <select id="property_id_edit" name="property_id">@foreach($getAllProperties as $index)
+              <select id="property_id_update" name="property_id">@foreach($getAllProperties as $index)
                 <option value="{{ $index->id }}">{{ $index->property_name }}</option>@endforeach</select>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Property types</label>
             <div class="col-sm-7 controls">
-              <select id="property_type_id_edit" name="property_type_id">@foreach($getAllPropertiesType as $index)
+              <select id="property_type_id_update" name="property_type_id">@foreach($getAllPropertiesType as $index)
                 <option value="{{ $index->id }}">{{ $index->property_type_name }}</option>@endforeach</select>
             </div>
           </div>
@@ -703,7 +710,7 @@ function getUnitTypeForAgreementEdit(unit_id)
           <div class="form-group">
             <label class="col-sm-4 control-label">Resident Card</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="text" name="resident_card">
+              <input class="input-border-btm" type="text"   name="resident_card">
             </div>
           </div>
           <div class="form-group">
@@ -751,19 +758,19 @@ function getUnitTypeForAgreementEdit(unit_id)
           <div class="form-group">
             <label class="col-sm-4 control-label">Period Of</label><small>in Month</small>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="number" name="period_of">
+              <input class="input-border-btm" type="number" value ="`+response[0].period_of+`" name="period_of">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Agreement Start</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="date" name="agreement_start">
+              <input class="input-border-btm" type="date" value ="`+response[0].agreement_start+`" name="agreement_start">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Agreement End</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="date" name="agreement_end">
+              <input class="input-border-btm" type="date" value ="`+response[0].agreement_end+`" name="agreement_end">
             </div>
           </div>
           <div class="form-group">
@@ -774,30 +781,32 @@ function getUnitTypeForAgreementEdit(unit_id)
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Current Document Attach</label>
-            <div class="col-sm-7 controls" id="document_attach_edit"></div>
+            <div class="col-sm-7 controls" id="document_attach_edit"> 
+            <embed src="/documents/`+response[0].document_attach+`">
+             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Unit Type Name</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="text" name="unit_type_name">
+              <input class="input-border-btm" type="text" value ="`+response[0].unit_type_name+`" name="unit_type_name">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Unit Name</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="text" name="unit_name">
+              <input class="input-border-btm" type="text" value ="`+response[0].unit_name+`" name="unit_name">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Monthly Rent</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="text" name="monthly_rent">
+              <input class="input-border-btm" type="text" value ="`+response[0].monthly_rent+`" name="monthly_rent">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Payment Type</label>
             <div class="col-sm-7 controls">
-              <input class="input-border-btm" type="text" name="payment_type">
+              <input class="input-border-btm" type="text" value ="`+response[0].payment_type+`" name="payment_type">
             </div>
           </div>
       </div>
@@ -818,8 +827,8 @@ function getUnitTypeForAgreementEdit(unit_id)
 
 
 
- 
+
 
 </script>
-                                   
+
 @stop
